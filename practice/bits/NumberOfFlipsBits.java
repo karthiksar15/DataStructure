@@ -1,4 +1,4 @@
-package practice;
+package practice.bits;
 
 import java.util.Scanner;
 
@@ -11,7 +11,6 @@ public class NumberOfFlipsBits {
             xor &= (xor - 1);
         }
         return cnt;
-
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package practice;
+package practice.bits;
 
 import java.util.Scanner;
 
