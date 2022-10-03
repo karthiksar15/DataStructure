@@ -23,9 +23,8 @@ public class MinStack {
 
     static void pop() {
         if (stack.size() > 0) {
-            int num = stack.pop();
-            if (stMin.peek() == num)
-                stMin.remove((Object) num);
+            stack.pop();
+            stMin.pop();
         }
 
     }
