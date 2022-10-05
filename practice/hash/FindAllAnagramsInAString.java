@@ -21,7 +21,7 @@ public class FindAllAnagramsInAString {
     }
 
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<>();
         char[] sarray = new char[256];
         char[] parray = new char[256];
         int n = s.length();
