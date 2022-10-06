@@ -1,6 +1,6 @@
 package practice.LinkedList;
 
-import java.util.List;
+
 import java.util.Scanner;
 
 public class MakeMiddleNode {
@@ -19,7 +19,7 @@ public class MakeMiddleNode {
             System.out.println(one.val);
             one = one.next;
         }
-//        prev.next=head;
+
 
     }
 
