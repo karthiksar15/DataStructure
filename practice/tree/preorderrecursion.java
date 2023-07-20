@@ -37,7 +37,7 @@ public class preorderrecursion {
 
         list.add(new ArrayList<Integer>(sublist));
     }
-    public List<Long> inorderTraversal(TreeNode1 root) {
+    public List<List<Integer>> inorderTraversal(TreeNode1 root) {
         dfs(root);
         return list;
 

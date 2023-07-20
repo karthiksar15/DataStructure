@@ -2,7 +2,7 @@ package practice;
 
 import java.util.*;
 
-public class Test {
+public class Test_2 {
     public static void main(String[] args) {
 //        Map<Character,Integer> mp=new HashMap<Character,Integer>();
 //        String s="karthik";
@@ -14,7 +14,7 @@ public class Test {
 //        System.out.println(postfixExpression("2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +"));
 //        System.out.println(postfixExpression("5 11 + 9 5 - + 10 *"));
 
-        Map<Integer,Set<Integer>> grpah=new HashMap<>();
+        Map<Integer, Set<Integer>> grpah = new HashMap<>();
 
 
     }
