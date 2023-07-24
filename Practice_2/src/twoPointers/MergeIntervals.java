@@ -23,6 +23,7 @@ public class MergeIntervals {
             Intervals intervals2 = new Intervals(intervals[i][0], intervals[i][1]);
             intervals1[i] = intervals2;
         }
+
         Arrays.sort(intervals1, new Comparator<Intervals>() {
             @Override
             public int compare(Intervals o1, Intervals o2) {
