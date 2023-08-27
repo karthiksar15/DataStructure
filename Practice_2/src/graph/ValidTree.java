@@ -3,7 +3,7 @@ package graph;
 
 import java.util.Objects;
 
-class Solution3{
+ class Solution3{
 
     class Pair{
         Integer a;
