@@ -1,32 +1,46 @@
 package recursion;
+
 public class Search2dMatrix {
 
-    static String indexCapitalisation(String s, int[] ind) {
+    private int[][] matrix;
+    private int target;
 
-        StringBuilder sb=new StringBuilder(s);
 
-        for(int i=0;i<ind.length;i++)
-        {
-            if(ind[i] < sb.length() && sb.charAt(ind[i]) >= 97)
-            {
-                int temp=sb.charAt(ind[i])-32;
-                sb.setCharAt(ind[i],(char)temp);
-            }
-
+    private boolean searchRec(int left, int up, int right, int down) {
+        if (left > right || up > down) {
+            return false;
+        } else if (this.target < matrix[up][left] || this.target > matrix[down][right]) {
+            return false;
         }
+        int mid = left + (right - left) / 2;
+        int row = up;
+        while (row <= down && matrix[row][mid] <= target) {
+            if (matrix[row][mid] == target) {
+                return true;
+            }
+            row++;
+        }
+        return searchRec(left, row, mid - 1, down) || searchRec(mid + 1, up, right, row - 1);
 
+    }
 
+    public boolean searchMatrix(int[][] matrix, int target) {
 
-        return sb.toString();
+        if (matrix == null || matrix.length == 0)
+            return false;
+        this.matrix=matrix;
+        return searchRec(0, 0, matrix[0].length - 1, matrix.length - 1);
+
     }
 
     public static void main(String args[]) {
-        String s = "learn by doing";
-        int[] ind = new int[] { 0, 6, 9 };
-        System.out.println(indexCapitalisation(s, ind));
-//        assert (indexCapitalisation(s, ind).equals("Learn By Doing")) : "Expect \"Learn By Doing\" for s = \"learn by doing\" and ind = [0, 6, 9]";
 
-        System.out.println("All test cases in main function passed");
+        Search2dMatrix s2 = new Search2dMatrix();
+        int[][] mat = {{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}, {18, 21, 23, 26, 30}};
+        s2.target = 20;
+        System.out.println(s2.searchMatrix(mat, s2.target));
+
 
     }
+
 }
