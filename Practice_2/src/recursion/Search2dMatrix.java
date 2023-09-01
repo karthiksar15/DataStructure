@@ -44,3 +44,15 @@ public class Search2dMatrix {
     }
 
 }
+
+
+//    public static boolean search2DMatrix(int[][] matrix, int target, int r, int c) {
+//        if(c<0 || r==matrix.length)
+//            return false;
+//        if(matrix[r][c]==target)
+//            return true;
+//        else if(target<matrix[r][c])
+//            return search2DMatrix(matrix,target,r,c-1);
+//        return search2DMatrix(matrix,target,r+1,c);
+//    }
+//}
