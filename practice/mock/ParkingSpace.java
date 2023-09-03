@@ -1,13 +1,12 @@
 package practice.mock;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
-class Pair {
+class Pairs {
     int first;
     boolean second;
 
-    Pair(int first, boolean second) {
+    Pairs(int first, boolean second) {
         this.first = first;
         this.second = second;
     }
@@ -18,17 +17,18 @@ public class ParkingSpace {
         // Stores info about
         // entry and exit times
         int N = times.length;
-        Pair a[] = new Pair[2 * N];
+        Pairs a[] = new Pairs[2 * N];
 
         // Convert given array to new array
         for (int i = 0; i < N; i++) {
-            a[2 * i] = new Pair(times[i][0], true);
-            a[2 * i + 1] = new Pair(times[i][1], false);
+            a[2 * i] = new Pairs(times[i][0], true);
+            a[2 * i + 1] = new Pairs(times[i][1], false);
         }
 
         // Sort array in ascending
         // order of time
-        Arrays.sort(a, (p1, p2) -> p1.first - p2.first);
+        Arrays.sort(a, Comparator.comparingInt(p -> p.first));
+
 
         // Stores current maximum
         // at every iteration
@@ -65,6 +65,7 @@ public class ParkingSpace {
         Scanner scanner = new Scanner(System.in);
 
         int n = scanner.nextInt();
+
 
         int[][] times = new int[n][2];
 
