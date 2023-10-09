@@ -30,7 +30,7 @@ public class HeapBuild {
     static void printHeap(int arr[], int n)
     {
         System.out.println(
-                "Array representation of Heap is:");
+                "Array_1 representation of Heap is:");
 
         for (int i = 0; i < n; ++i)
             System.out.print(arr[i] + " ");
