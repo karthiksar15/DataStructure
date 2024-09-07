@@ -1,0 +1,118 @@
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Queue;
+import java.util.Stack;
+
+public class ValidPath {
+
+    public static void main(String[] args) {
+        int[][] edges = { { 0, 1 }, { 0, 2 }, { 3, 5 }, { 5, 4 }, { 4, 3 } };
+        int src = 0;
+        int destination = 2;
+        int n = edges.length;
+        boolean[] visited = new boolean[n];
+        Map<Integer, List<Integer>> adjLst = new HashMap<>();
+        for (int[] edge : edges) {
+            adjLst.computeIfAbsent(edge[0], val -> new ArrayList<>()).add(edge[1]);
+            System.out.println("edge[0]----" + edge[0]);
+            System.out.println("adjLst.get(edge[0])----" + adjLst.get(edge[0]));
+        }
+
+        System.out.println("dfs--" + checkInDFS(adjLst, src, destination, visited));
+        visited = new boolean[n];
+        System.out.println("dfs recur--" + checkInDFSRecur(adjLst, src, destination, visited));
+        visited = new boolean[n];
+        System.out.println("bfs----" + checkInBFS(adjLst, src, destination, visited));
+        visited = new boolean[n];
+        System.out.println("disjoint----" + checkInDisjoint(adjLst, src, destination, visited, n));
+        // checkInDisjoint();
+
+    }
+
+    public static boolean checkInDFS(Map<Integer, List<Integer>> adjLst, int src, int destination, boolean[] visited) {
+        Deque<Integer> st = new LinkedList<>();
+        st.add(src);
+        visited[src] = true;
+        while (!st.isEmpty()) {
+            int temp = st.pop();
+            if (temp == destination)
+                return true;
+            if (adjLst.get(temp) != null) {
+                for (Integer adj : adjLst.get(temp)) {
+                    if (!visited[adj]) {
+                        st.push(adj);
+                        visited[adj] = true;
+                    }
+
+                }
+            }
+
+        }
+
+        return false;
+    }
+
+    public static boolean checkInDFSRecur(Map<Integer, List<Integer>> adjLst, int src, int destination,
+            boolean[] seen) {
+        if (src == destination)
+            return true;
+        if (!seen[src]) {
+            seen[src] = true;
+            for (int currNode : adjLst.get(src)) {
+                if (checkInDFSRecur(adjLst, currNode, destination, seen)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkInBFS(Map<Integer, List<Integer>> adjMap, Integer src, Integer destination,
+            boolean[] visited) {
+        Queue<Integer> queue = new LinkedList<>();
+        if (src.equals(destination))
+            return true;
+        queue.add(src);
+        visited[src] = true;
+        while (!queue.isEmpty()) {
+            src = queue.poll();
+            if (src.intValue() == destination.intValue()) {
+                return true;
+            }
+            for (Integer i : adjMap.get(src)) {
+                if (!visited[i]) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public static boolean checkInDisjoint(Map<Integer, List<Integer>> adjMap, Integer src, Integer destination,
+            boolean[] visited, int size) {
+        Disjoint dis = new Disjoint(10);
+        // Map<Integer, Integer> address = new HashMap<>();
+        // int count = 0;
+        for (Entry<Integer, List<Integer>> adj : adjMap.entrySet()) {
+            Integer fromNode = adj.getKey();
+            // address.put(fromNode, count);
+            for (Integer toNode : adj.getValue()) {
+                dis.union(fromNode, toNode);
+            }
+
+        }
+
+        if (dis.find(src) == dis.find(destination))
+            return true;
+        return false;
+
+    }
+
+}
